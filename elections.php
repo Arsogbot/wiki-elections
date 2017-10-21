@@ -110,8 +110,9 @@ function del_elect()
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="hy">
 	<head>
+	    <meta charset="UTF-8">
 		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/9/92/Roman_Election.jpg">
 		<title>Ընտրություններ Հայերեն Վիքիպեդիայում</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
