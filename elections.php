@@ -6,10 +6,14 @@ function retrive_data()
 	function article_edit_count($api, $url)
 	{
 		$fives = 0;
-		while(strpos($api, 'uccontinue') && $fives < 1000) {
+		while(strpos($api, 'uccontinue')) {
 			$fives = $fives + 500;
 			preg_match('/"uccontinue":"([^"]+)/', $api, $uccontinue);
 			$api = file_get_contents($url . '&uccontinue=' . $uccontinue[1]);
+			if ($fives > 1000) {
+				$fives = $fives + 0.5;
+				break;
+			}
 		}
 		return $fives + substr_count($api, "timestamp");
 	}
@@ -52,11 +56,13 @@ function common_template($_months, $_edits, $_edits0, $_lmonth, $_l3months)
 	{
 		array_push($edits, 'red');
 	}
-
-
-
-	$edits_in_main = array('Նվազագույնը ' . $_edits0 . ' գործողություն հոդվածներում', $data[2] . '֊ից ավել');
-	if ($data[1] >= $_edits0) 
+	if (($data[2] - floor($data[2]) == 0)) {
+		$edits_in_main_end = "";
+	} else {
+		$edits_in_main_end = "֊ից ավել";
+	}
+	$edits_in_main = array('Նվազագույնը ' . $_edits0 . ' գործողություն հոդվածներում', floor($data[2]) . $edits_in_main_end);
+	if (floor($data[2]) >= $_edits0) 
 	{
 		array_push($edits_in_main, 'green');
 	} else 
