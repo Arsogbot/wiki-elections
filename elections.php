@@ -38,54 +38,70 @@ $data = retrive_data();
 function common_template($_months, $_edits, $_edits0, $_lmonth, $_l3months)
 {
 	global $data;
-	$exper = array($_months .' ամիս վիքիստաժ', floor($data[0]/2628000));
-
-	if ($data[0]/2628000 > $_months) 
+	if($_months != 0) 
 	{
-		array_push($exper, 'green');
-	} else 
-	{
-		array_push($exper, 'red');
+		$exper = array($_months .' ամիս վիքիստաժ', floor($data[0]/2628000));
+		if ($data[0]/2628000 > $_months) 
+		{
+			array_push($exper, 'green');
+		} else 
+		{
+			array_push($exper, 'red');
+		}	
 	}
 
-	$edits = array('Նվազագույնը '. $_edits .' գործողություն', $data[1]);
-	if ($data[1] >= $_edits) 
+	if($_edits != 0)
 	{
-		array_push($edits, 'green');
-	} else 
-	{
-		array_push($edits, 'red');
-	}
-	if (($data[2] - floor($data[2]) == 0)) {
-		$edits_in_main_end = "";
-	} else {
-		$edits_in_main_end = "֊ից ավել";
-	}
-	$edits_in_main = array('Նվազագույնը ' . $_edits0 . ' գործողություն հոդվածներում', floor($data[2]) . $edits_in_main_end);
-	if (floor($data[2]) >= $_edits0) 
-	{
-		array_push($edits_in_main, 'green');
-	} else 
-	{
-		array_push($edits_in_main, 'red');
+		$edits = array('Նվազագույնը '. $_edits .' գործողություն', $data[1]);
+		if ($data[1] >= $_edits) 
+		{
+			array_push($edits, 'green');
+		} else 
+		{
+			array_push($edits, 'red');
+		}
 	}
 
-	$last_month = array('Նվազագույնը ' . $_lmonth . ' գործողություն վերջին ամսում', edits_count_of_n_month_from_now(1));
-	if (edits_count_of_n_month_from_now(1) >= $_lmonth) 
+	if($_edits0 != 0)
 	{
-		array_push($last_month, 'green');
-	} else 
-	{
-		array_push($last_month, 'red');
+		if (($data[2] - floor($data[2]) == 0)) {
+			$edits_in_main_end = "";
+		} else {
+			$edits_in_main_end = "֊ից ավել";
+		}
+		$edits_in_main = array('Նվազագույնը ' . $_edits0 . ' գործողություն հոդվածներում', floor($data[2]) . $edits_in_main_end);
+		if (floor($data[2]) >= $_edits0) 
+		{
+			array_push($edits_in_main, 'green');
+		} else 
+		{
+			array_push($edits_in_main, 'red');
+		}
 	}
-	$last_3month_sum = edits_count_of_n_month_from_now(2) . ', ' . edits_count_of_n_month_from_now(3) . ', ' . edits_count_of_n_month_from_now(4);
-	$last_3month = array('Վերջին ամսվան նախորդող 3 ամիսներին ամսական ' . $_l3months . '-ական գործողություն', $last_3month_sum);
-	if (edits_count_of_n_month_from_now(2) >= $_l3months && edits_count_of_n_month_from_now(3) >= $_l3months && edits_count_of_n_month_from_now(4) >= $_l3months) 
+
+	if($_lmonth != 0)
 	{
-		array_push($last_3month, 'green');
-	} else 
+		$last_month = array('Նվազագույնը ' . $_lmonth . ' գործողություն վերջին ամսում', edits_count_of_n_month_from_now(1));
+		if (edits_count_of_n_month_from_now(1) >= $_lmonth) 
+		{
+			array_push($last_month, 'green');
+		} else 
+		{
+			array_push($last_month, 'red');
+		}
+	}
+
+	if($_l3months != 0)
 	{
-		array_push($last_3month, 'red');
+		$last_3month_sum = edits_count_of_n_month_from_now(2) . ', ' . edits_count_of_n_month_from_now(3) . ', ' . edits_count_of_n_month_from_now(4);
+		$last_3month = array('Վերջին ամսվան նախորդող 3 ամիսներին ամսական ' . $_l3months . '-ական գործողություն', $last_3month_sum);
+		if (edits_count_of_n_month_from_now(2) >= $_l3months && edits_count_of_n_month_from_now(3) >= $_l3months && edits_count_of_n_month_from_now(4) >= $_l3months) 
+		{
+			array_push($last_3month, 'green');
+		} else 
+		{
+			array_push($last_3month, 'red');
+		}
 	}
 
 	$result = array($exper, $edits, $edits_in_main, $last_month, $last_3month);

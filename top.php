@@ -7,8 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<h1>Խնդրում ենք նշել քվեարկությունը և մասնակցի անունը</h1>
-		<p>Գործիքի օգնությամբ հնարավոր է ավտոմատ որոշել մասնակիցը համապատասխան նախագծին մասնակցելու իրավունք ունի թե ոչ։</p>
+		<h1>Խնդրում ենք նշել քվեարկությունը և մասնակցի անունը</h1><br>
+		<p>Գործիքի օգնությամբ հնարավոր է ավտոմատ որոշել մասնակիցը համապատասխան նախագծին մասնակցելու իրավունք ունի թե ոչ։</p><br>
 		<form action="elections.php" method="get">
 			<select name="election">
 			  <option value="1">Տարվա հոդված</option>
@@ -18,4 +18,4 @@
 			  <option value="5">Ջնջման կանոնակարգ</option>
 			</select>
 			Մասնակցի անուն։ <input type="text" name="name"><input type="submit" value="Ստուգել">
-		</form>
+		</form><br>
