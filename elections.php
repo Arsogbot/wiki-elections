@@ -53,6 +53,8 @@ function common_template($_months, $_edits, $_edits0, $_lmonth, $_l3months)
 		array_push($edits, 'red');
 	}
 
+
+
 	$edits_in_main = array('Նվազագույնը ' . $_edits0 . ' գործողություն հոդվածներում', $data[2] . '֊ից ավել');
 	if ($data[1] >= $_edits0) 
 	{
@@ -119,6 +121,9 @@ function del_elect()
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
+		<div>
+			<h1>Խնդրում ենք նշել քվեարկությունը մասնակցի անունը</h1>
+		</div>
 		<form action="elections.php" method="get">
 			<select name="election">
 			  <option value="1">Տարվա հոդված</option>
