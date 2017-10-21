@@ -30,9 +30,10 @@ function edits_count_of_n_month_from_now($n)
 	return substr_count($api, "timestamp");
 }
 
+$data = retrive_data();
 function common_template($_months, $_edits, $_edits0, $_lmonth, $_l3months)
 {
-	$data = retrive_data();
+	global $data;
 	$exper = array($_months .' ամիս վիքիստաժ', floor($data[0]/2628000));
 
 	if ($data[0]/2628000 > $_months) 
