@@ -25,7 +25,7 @@ function edits_count_of_n_month_from_now($n)
 {
 	$ucstart = time() - ($n - 1) * 2628000;
 	$ucend = time() - $n * 2628000;
-	$url = 'https://hy.wikipedia.org/w/api.php?action=query&list=usercontribs&uclimit=50&ucuser='.$_GET["name"]. '&ucstart='. $ucstart . '&ucend='. $ucend;
+	$url = 'https://hy.wikipedia.org/w/api.php?action=query&list=usercontribs&uclimit=50&format=json&ucuser='.$_GET["name"]. '&ucstart='. $ucstart . '&ucend='. $ucend;
 	$api = file_get_contents($url);
 	return substr_count($api, "timestamp");
 }
