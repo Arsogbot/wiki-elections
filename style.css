@@ -1,7 +1,7 @@
 body { text-align: center; }
      /* center all items within body, this property is inherited */
 body > * { text-align: left; }
-form, h1 {
+form, h1, p {
     display: inline-block;
     text-align: center;
 }
