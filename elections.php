@@ -1,7 +1,7 @@
 <?php
 function retrive_data()
 {
-	$url = 'https://hy.wikipedia.org/w/api.php?action=query&list=users|usercontribs&ususers=' . $_GET["name"] . '&usprop=editcount|registration&ucnamespace=0&ucuser=' . $_GET["name"] . '&ucprop=timestamp&uclimit=max&format=json';
+	$url = 'https://hy.wikipedia.org/w/api.php?action=query&list=users|usercontribs&ususers=' . str_replace(' ', '_', $_GET["name"]) . '&usprop=editcount|registration&ucnamespace=0&ucuser=' . str_replace(' ', '_', $_GET["name"]) . '&ucprop=timestamp&uclimit=max&format=json';
 	$article_api = file_get_contents($url);
 	function article_edit_count($api, $url)
 	{
@@ -25,7 +25,7 @@ function edits_count_of_n_month_from_now($n)
 {
 	$ucstart = time() - ($n - 1) * 2628000;
 	$ucend = time() - $n * 2628000;
-	$url = 'https://hy.wikipedia.org/w/api.php?action=query&list=usercontribs&uclimit=50&format=json&ucuser='.$_GET["name"]. '&ucstart='. $ucstart . '&ucend='. $ucend;
+	$url = 'https://hy.wikipedia.org/w/api.php?action=query&list=usercontribs&uclimit=50&format=json&ucuser='. str_replace(' ', '_', $_GET["name"]) . '&ucstart='. $ucstart . '&ucend='. $ucend;
 	$api = file_get_contents($url);
 	return substr_count($api, "timestamp");
 }
@@ -111,28 +111,8 @@ function del_elect()
 {
 	return common_template(6, 500, 100, 0, 0);
 }
+include("top.php");
 ?>
-<!DOCTYPE html>
-<html lang="hy">
-	<head>
-	    <meta charset="UTF-8">
-		<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/9/92/Roman_Election.jpg">
-		<title>Ընտրություններ Հայերեն Վիքիպեդիայում</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
-	</head>
-	<body>
-		<h1>Խնդրում ենք նշել քվեարկությունը մասնակցի անունը</h1>
-		<p>Գործիքի օգնությամբ հնարովոր է ավտոմատ որոշել մասնակիցը համապատասխան նախագծին մասնակցելու իրավունք ունի թե ոչ։</p>
-		<form action="elections.php" method="get">
-			<select name="election">
-			  <option value="1">Տարվա հոդված</option>
-			  <option value="2">Ընտրյալ հոդված</option>
-			  <option value="3">Լավ հոդված</option>
-			  <option value="4">Ադմինիստրատորի իրավունքների դիմում</option>
-			  <option value="5">Ջնջման կանոնակարգ</option>
-			</select>
-			Մասնակցի անուն։ <input type="text" name="name"><input type="submit" value="Ստուգել">
-		</form>
 	   <table>
 	     <tr>
 	       <td>Պահանջ</td>
@@ -164,5 +144,4 @@ function del_elect()
 	     </tr>
 	     <?php endforeach; ?>
 	   </table>
-	</body>
-</html>
+<?php include("bottom.php");?>
