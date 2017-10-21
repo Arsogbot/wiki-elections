@@ -74,7 +74,7 @@ function common_template($_months, $_edits, $_edits0, $_lmonth, $_l3months)
 	}
 	$last_3month_sum = edits_count_of_n_month_from_now(2) . ', ' . edits_count_of_n_month_from_now(3) . ', ' . edits_count_of_n_month_from_now(4);
 	$last_3month = array('Վերջին ամսվան նախորդող 3 ամիսներին ամսական ' . $_l3months . '-ական գործողություն', $last_3month_sum);
-	if (edits_count_of_n_month_from_now(2) >= $_l3months || edits_count_of_n_month_from_now(3) >= $_l3months || edits_count_of_n_month_from_now(4) >= $_l3months) 
+	if (edits_count_of_n_month_from_now(2) >= $_l3months && edits_count_of_n_month_from_now(3) >= $_l3months && edits_count_of_n_month_from_now(4) >= $_l3months) 
 	{
 		array_push($last_3month, 'green');
 	} else 
