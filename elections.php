@@ -133,6 +133,29 @@ function del_elect()
 {
 	return common_template(6, 500, 100, 0, 0);
 }
+switch ($_GET["election"]) {
+	case '1':
+		$cols = article_of_the_year();
+		$selected1 = ' selected';
+		break;
+	case '2':
+		$cols = featured_articles();
+		$selected2 = ' selected';
+		break;
+	case '3':
+		$cols = good_articles();
+		$selected3 = ' selected';
+		break;
+	case '4':
+		$cols = admin_elect();
+		$selected4 = ' selected';
+		break;
+	case '5':
+		$cols = del_elect();
+		$selected5 = ' selected';
+		break;
+}
+$inputvalue = $_GET["name"];
 include("top.php");
 ?>
 	   <table>
@@ -141,24 +164,6 @@ include("top.php");
 	       <td>Ունի</td>
 	     </tr>
 	     <?php 
-	     $cols = article_of_the_year();
-		switch ($_GET["election"]) {
-			case '1':
-				$cols = article_of_the_year();
-				break;
-			case '2':
-				$cols = featured_articles();
-				break;
-			case '3':
-				$cols = good_articles();
-				break;
-			case '4':
-				$cols = admin_elect();
-				break;
-			case '5':
-				$cols = del_elect();
-				break;
-		}
 	     foreach ($cols as $row) : ?>
 	     <tr bgcolor="<?php echo $row[2]; ?>">
 	       <td><?php echo $row[0]; ?></td>
